@@ -1,58 +1,414 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Inventory Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web-based **Inventory Management System** built with **Laravel 13, Livewire, MySQL, and Tailwind CSS**. The system is designed to manage products, inventory, warehouses, suppliers, purchasing, stock movements, transfers, adjustments, batches, and reports from a centralized interface.
 
-## About Laravel
+The project is being developed as a portfolio project and is designed to serve as the inventory foundation for a future **Point of Sale (POS) System**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Dashboard
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* Inventory overview and key metrics
+* Stock monitoring
+* Inventory summaries
+* Quick access to major modules
 
-## Learning Laravel
+### Product Management
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+* Product management
+* Product variants
+* Categories
+* Brands
+* Units
+* Product status management
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Inventory Management
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+* Inventory dashboard
+* Stock overview
+* Stock movement history
+* Stock adjustments
+* Stock transfers between warehouses
+* Reserved stock handling
+* Inventory quantity validation
+* Prevention of negative inventory
 
-## Agentic Development
+### Batches & Expiration
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+* Product batch tracking
+* Batch numbers
+* Expiration dates
+* Batch quantity tracking
+* Batch-aware inventory movements
 
-```bash
-composer require laravel/boost --dev
+### Warehouse Management
 
-php artisan boost:install
+* Multiple warehouse support
+* Warehouse status management
+* Warehouse-specific inventory
+* Stock transfers between warehouses
+
+### Purchasing
+
+* Supplier management
+* Purchase orders
+* Purchase order items
+* Partial receiving
+* Purchase receipts
+* Inventory updates after receiving
+* Duplicate receipt protection
+
+### Reports
+
+* Inventory reports
+* Stock movement reports
+* Purchasing reports
+* Warehouse-related reporting
+
+### Activity Logs
+
+* User activity tracking
+* Inventory operation auditing
+* Important system changes recorded for traceability
+
+### Security & Access Control
+
+* Authentication
+* Role and permission management
+* Laravel policies and gates
+* Login rate limiting
+* Input validation
+* Transaction-safe inventory operations
+
+## Tech Stack
+
+| Technology   | Purpose                   |
+| ------------ | ------------------------- |
+| Laravel 13   | Backend framework         |
+| PHP 8.3+     | Server-side language      |
+| Livewire     | Dynamic user interface    |
+| Blade        | Server-rendered templates |
+| Tailwind CSS | UI styling                |
+| MySQL        | Relational database       |
+| Vite         | Frontend asset bundling   |
+| Pest         | Automated testing         |
+| Laravel Pint | PHP code formatting       |
+
+## System Architecture
+
+The application separates business logic from controllers using service classes.
+
+```text
+Request
+   │
+   ▼
+Controller / Livewire Component
+   │
+   ▼
+Authorization & Validation
+   │
+   ▼
+Service Layer
+   │
+   ▼
+Database Transaction
+   │
+   ▼
+Eloquent Models
+   │
+   ▼
+MySQL Database
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Core business logic is handled by services including inventory, purchasing, receiving, stock adjustment, stock transfer, batch allocation, reporting, and activity logging.
 
-## Contributing
+## Inventory Flow
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```text
+Products
+   │
+   ▼
+Stock Items
+   │
+   ▼
+Inventory
+   │
+   ├──────── Purchasing
+   │
+   ├──────── Stock Adjustments
+   │
+   ├──────── Stock Transfers
+   │
+   └──────── Future POS
+   │
+   ▼
+Inventory Movements
+```
 
-## Code of Conduct
+Inventory movements provide a historical record of stock changes including purchases, adjustments, transfers, and future sales transactions.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Installation
 
-## Security Vulnerabilities
+### Requirements
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Make sure the following are installed:
+
+* PHP 8.3+
+* Composer
+* MySQL
+* Node.js
+* NPM
+* Git
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/EJ-code764/inventory-management-system.git
+```
+
+Enter the project directory:
+
+```bash
+cd inventory-management-system
+```
+
+### 2. Install PHP dependencies
+
+```bash
+composer install
+```
+
+### 3. Install frontend dependencies
+
+```bash
+npm install
+```
+
+### 4. Create the environment file
+
+Copy the example environment configuration:
+
+**Windows**
+
+```bash
+copy .env.example .env
+```
+
+**Linux/macOS**
+
+```bash
+cp .env.example .env
+```
+
+### 5. Generate the application key
+
+```bash
+php artisan key:generate
+```
+
+### 6. Configure the database
+
+Create a MySQL database and update `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=inventory
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Adjust the username and password according to your MySQL configuration.
+
+### 7. Run database migrations
+
+```bash
+php artisan migrate
+```
+
+If the project contains development seeders:
+
+```bash
+php artisan db:seed
+```
+
+### 8. Build frontend assets
+
+For development:
+
+```bash
+npm run dev
+```
+
+For a production build:
+
+```bash
+npm run build
+```
+
+### 9. Start the application
+
+```bash
+php artisan serve
+```
+
+Open:
+
+```text
+http://127.0.0.1:8000
+```
+
+## Running Tests
+
+Run the automated test suite with:
+
+```bash
+php artisan test
+```
+
+The project includes tests covering important inventory and business operations such as:
+
+* Core inventory operations
+* Inventory auditing
+* Inventory services
+* Authentication
+* Classifications
+* Product batches
+* Purchasing
+* Stock adjustments
+* Stock transfers
+* Reports
+* Activity logging
+
+## Code Formatting
+
+Laravel Pint is used for PHP code formatting.
+
+Check or format the project with:
+
+```bash
+./vendor/bin/pint
+```
+
+On Windows:
+
+```bash
+vendor\bin\pint
+```
+
+## Project Structure
+
+```text
+app/
+├── Http/
+│   ├── Controllers/
+│   └── Requests/
+├── Livewire/
+├── Models/
+├── Policies/
+├── Services/
+└── ...
+
+database/
+├── factories/
+├── migrations/
+└── seeders/
+
+resources/
+├── css/
+├── js/
+└── views/
+
+routes/
+└── web.php
+
+tests/
+├── Feature/
+└── Unit/
+```
+
+## Screenshots
+
+Screenshots of the application will be added as development continues.
+
+Recommended screenshots:
+
+* Dashboard
+* Products
+* Inventory Dashboard
+* Stock Overview
+* Stock Movements
+* Purchase Orders
+* Stock Transfers
+* Batches & Expiration
+* Reports
+
+## Roadmap
+
+Future development may include:
+
+* Point of Sale (POS) module
+* Sales transactions
+* Sales returns
+* Barcode scanning
+* Receipt generation
+* Customer management
+* Payment methods
+* Sales reports and analytics
+* Low-stock notifications
+* Enhanced dashboard analytics
+* Deployment and online demo
+
+## POS Integration
+
+The Inventory Management System is designed to become the inventory foundation of a future POS system.
+
+The POS module will use the existing inventory infrastructure rather than maintaining a separate stock database.
+
+```text
+Purchase
+    │
+    ▼
+Inventory
+    │
+    ├──── Stock Transfer
+    ├──── Stock Adjustment
+    │
+    ▼
+POS Sale
+    │
+    ▼
+Inventory Movement
+```
+
+This allows purchasing, warehouse operations, and future sales transactions to share a consistent inventory source of truth.
+
+## Security
+
+Sensitive environment configuration is stored in `.env` and should never be committed to Git.
+
+Before deploying to production, make sure production configuration uses appropriate settings such as:
+
+```env
+APP_ENV=production
+APP_DEBUG=false
+```
+
+Production credentials, database passwords, application keys, and other secrets must never be stored directly in the repository.
+
+## Status
+
+**Under Active Development**
+
+The inventory management functionality is currently being developed and refined. POS functionality is planned as a future extension.
+
+## Author
+
+**Elly Jay V. Jangco**
+
+GitHub: `EJ-code764`
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is currently intended for educational, portfolio, and development purposes.
