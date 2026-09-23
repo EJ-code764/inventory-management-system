@@ -18,8 +18,23 @@
                         <td class="px-4 py-3">{{ $product->stockItem?->sku ?? 'Not set' }}</td>
                         <td class="px-4 py-3">{{ $product->category?->name }}<span class="block text-slate-500">{{ $product->brand?->name }}</span></td>
                         <td class="px-4 py-3">{{ $product->unit?->short_name }}</td>
-                        <td class="px-4 py-3">{{ $product->stockItem?->cost_price ?? 'Not set' }}</td>
-                        <td class="px-4 py-3">{{ $product->stockItem?->selling_price ?? 'Not set' }}</td>
+                        {{-- <td class="px-4 py-3">{{ $product->stockItem?->cost_price ?? 'Not set' }}</td>
+                        <td class="px-4 py-3">{{ $product->stockItem?->selling_price ?? 'Not set' }}</td> --}}
+                        <td class="px-4 py-3 tabular-nums">
+                            @if ($product->stockItem?->cost_price !== null)
+                                <x-money :amount="$product->stockItem->cost_price" />
+                            @else
+                                <span class="text-slate-500">Not set</span>
+                            @endif
+                        </td>
+
+                        <td class="px-4 py-3 tabular-nums">
+                            @if ($product->stockItem?->selling_price !== null)
+                                <x-money :amount="$product->stockItem->selling_price" />
+                            @else
+                                <span class="text-slate-500">Not set</span>
+                            @endif
+                        </td>
                         <td class="px-4 py-3">{{ $product->stockItem?->reorder_level ?? 'Not set' }}</td>
                         <td class="px-4 py-3">{{ ucfirst($product->status->value) }}</td>
                         <td class="px-4 py-3">@can('update', $product)<a class="underline" href="{{ route('products.edit', $product) }}">Edit</a>@endcan</td>

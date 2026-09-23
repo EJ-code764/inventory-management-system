@@ -33,6 +33,14 @@ class ReportQuery
         'unit_cost', 'quantity_delta', 'quantity_before', 'quantity_after', 'ordered_quantity', 'received_quantity',
         'remaining_quantity', 'subtotal', 'discount', 'tax', 'previous_quantity', 'new_quantity', 'difference'];
 
+    public const MONEY = [
+    'valuation',
+    'unit_cost',
+    'subtotal',
+    'discount',
+    'tax',
+    ];
+
     /** @return array<string, string> */
     public function columns(string $report): array
     {
