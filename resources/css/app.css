@@ -3,7 +3,362 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+/*
+|--------------------------------------------------------------------------
+| Design Tokens
+|--------------------------------------------------------------------------
+|
+| Global design system for the application.
+|
+| PRIMARY COLOR:
+| Change the --color-primary-* values below to re-theme the application.
+|
+*/
+
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /*
+    |--------------------------------------------------------------------------
+    | Typography
+    |--------------------------------------------------------------------------
+    */
+
+    --font-sans:
+        'Instrument Sans',
+        ui-sans-serif,
+        system-ui,
+        sans-serif,
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol',
+        'Noto Color Emoji';
+
+    /*
+    |--------------------------------------------------------------------------
+    | Primary Color — Blue
+    |--------------------------------------------------------------------------
+    */
+
+    --color-primary-50: #eff6ff;
+    --color-primary-100: #dbeafe;
+    --color-primary-200: #bfdbfe;
+    --color-primary-300: #93c5fd;
+    --color-primary-400: #60a5fa;
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #2563eb;
+    --color-primary-700: #1d4ed8;
+    --color-primary-800: #1e40af;
+    --color-primary-900: #1e3a8a;
+    --color-primary-950: #172554;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Surfaces
+    |--------------------------------------------------------------------------
+    */
+
+    --color-surface: #ffffff;
+    --color-background: #f8fafc;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Border Radius
+    |--------------------------------------------------------------------------
+    */
+
+    --radius-card: 0.75rem;
+    --radius-control: 0.5rem;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Base Application Styles
+|--------------------------------------------------------------------------
+*/
+
+@layer base {
+
+    html {
+        @apply bg-background;
+    }
+
+    body {
+        @apply min-h-screen bg-background font-sans text-slate-900 antialiased;
+    }
+
+    /*
+    |----------------------------------------------------------------------
+    | Form controls
+    |----------------------------------------------------------------------
+    */
+
+    input,
+    select,
+    textarea {
+        @apply transition-colors duration-150;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        @apply border-primary-500 outline-none ring-2 ring-primary-500/20;
+    }
+
+    /*
+    |----------------------------------------------------------------------
+    | Buttons and links
+    |----------------------------------------------------------------------
+    */
+
+    button,
+    a {
+        @apply transition-colors duration-150;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+        @apply outline-none ring-2 ring-primary-500 ring-offset-2;
+    }
+
+    /*
+    |----------------------------------------------------------------------
+    | Tables
+    |----------------------------------------------------------------------
+    */
+
+    table {
+        @apply text-slate-700;
+    }
+
+    th {
+        @apply font-medium text-slate-600;
+    }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Reusable Application Utilities
+|--------------------------------------------------------------------------
+|
+| These classes provide semantic styling that can be reused throughout
+| Blade and Livewire views.
+|
+*/
+
+@layer components {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cards
+    |--------------------------------------------------------------------------
+    */
+
+    .app-card {
+        @apply rounded-xl border border-slate-200 bg-white shadow-sm;
+    }
+
+    .app-card-body {
+        @apply p-5;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Primary Button
+    |--------------------------------------------------------------------------
+    */
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2
+            rounded-lg
+            bg-primary-600
+            px-4 py-2
+            text-sm font-medium text-white
+            shadow-sm
+            hover:bg-primary-700
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-primary-500
+            focus-visible:ring-offset-2
+            disabled:pointer-events-none
+            disabled:opacity-50;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Secondary Button
+    |--------------------------------------------------------------------------
+    */
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2
+            rounded-lg
+            border border-slate-300
+            bg-white
+            px-4 py-2
+            text-sm font-medium text-slate-700
+            shadow-sm
+            hover:bg-slate-50
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-primary-500
+            focus-visible:ring-offset-2
+            disabled:pointer-events-none
+            disabled:opacity-50;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Danger Button
+    |--------------------------------------------------------------------------
+    */
+
+    .btn-danger {
+        @apply inline-flex items-center justify-center gap-2
+            rounded-lg
+            bg-red-600
+            px-4 py-2
+            text-sm font-medium text-white
+            shadow-sm
+            hover:bg-red-700
+            focus-visible:outline-none
+            focus-visible:ring-2
+            focus-visible:ring-red-500
+            focus-visible:ring-offset-2
+            disabled:pointer-events-none
+            disabled:opacity-50;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Form Controls
+    |--------------------------------------------------------------------------
+    */
+
+    .form-input {
+        @apply w-full rounded-lg
+            border border-slate-300
+            bg-white
+            px-3 py-2
+            text-sm text-slate-900
+            shadow-sm
+            placeholder:text-slate-400
+            hover:border-slate-400
+            focus:border-primary-500
+            focus:outline-none
+            focus:ring-2
+            focus:ring-primary-500/20;
+    }
+
+    .form-label {
+        @apply mb-1 block text-sm font-medium text-slate-700;
+    }
+
+    .form-help {
+        @apply mt-1 text-sm text-slate-500;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Links
+    |--------------------------------------------------------------------------
+    */
+
+    .app-link {
+        @apply font-medium text-primary-600
+            hover:text-primary-700
+            hover:underline;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Table
+    |--------------------------------------------------------------------------
+    */
+
+    .app-table-container {
+        @apply overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm;
+    }
+
+    .app-table {
+        @apply w-full text-left text-sm;
+    }
+
+    .app-table thead {
+        @apply border-b border-slate-200 bg-slate-50;
+    }
+
+    .app-table th {
+        @apply whitespace-nowrap px-4 py-3
+            text-xs font-semibold uppercase tracking-wide text-slate-500;
+    }
+
+    .app-table td {
+        @apply px-4 py-3;
+    }
+
+    .app-table tbody tr {
+        @apply border-b border-slate-100 transition-colors
+            last:border-b-0
+            hover:bg-slate-50/70;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Badges
+    |--------------------------------------------------------------------------
+    */
+
+    .badge {
+        @apply inline-flex items-center rounded-full px-2.5 py-1
+            text-xs font-medium;
+    }
+
+    .badge-primary {
+        @apply bg-primary-50 text-primary-700;
+    }
+
+    .badge-success {
+        @apply bg-emerald-50 text-emerald-700;
+    }
+
+    .badge-warning {
+        @apply bg-amber-50 text-amber-700;
+    }
+
+    .badge-danger {
+        @apply bg-red-50 text-red-700;
+    }
+
+    .badge-neutral {
+        @apply bg-slate-100 text-slate-700;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Page Headings
+    |--------------------------------------------------------------------------
+    */
+
+    .page-title {
+        @apply text-2xl font-semibold tracking-tight text-slate-900;
+    }
+
+    .page-description {
+        @apply mt-1 text-sm text-slate-500;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Section Headings
+    |--------------------------------------------------------------------------
+    */
+
+    .section-title {
+        @apply text-lg font-semibold text-slate-900;
+    }
+
+    .section-description {
+        @apply mt-1 text-sm text-slate-500;
+    }
 }
