@@ -48,8 +48,8 @@
         @if(request()->routeIs('dashboard')) aria-current="page" @endif
         @class([
             'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-            'bg-slate-800 text-white' => request()->routeIs('dashboard'),
-            'text-slate-300 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('dashboard'),
+            'bg-primary-50 text-primary-700' => request()->routeIs('dashboard'),
+            'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! request()->routeIs('dashboard'),
         ])
     >
         Dashboard
@@ -72,8 +72,8 @@
             :aria-expanded="open.toString()"
             @class([
                 'flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors',
-                'text-white' => $productManagementActive,
-                'text-slate-300 hover:bg-slate-800 hover:text-white' => ! $productManagementActive,
+                'text-primary-700' => $productManagementActive,
+                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! $productManagementActive,
             ])
         >
             <span>Product Management</span>
@@ -110,10 +110,12 @@
                     @if(request()->routeIs('products.*'))
                         aria-current="page"
                     @endif
-                    @class([
-                        'ml-3 block rounded-lg border-l border-slate-700 px-4 py-2 text-sm transition-colors',
-                        'bg-slate-800 text-white' => request()->routeIs('products.*'),
-                        'text-slate-400 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('products.*'),
+                     @class([
+                        'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                            => request()->routeIs('products.*'),
+                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                            => ! request()->routeIs('products.*'),
                     ])
                 >
                     Products
@@ -132,9 +134,11 @@
                     x-on:click="classificationOpen = !classificationOpen"
                     :aria-expanded="classificationOpen.toString()"
                     @class([
-                        'flex w-full items-center justify-between rounded-lg border-l border-slate-700 px-4 py-2 text-left text-sm transition-colors',
-                        'text-white' => $classificationActive,
-                        'text-slate-400 hover:bg-slate-800 hover:text-white' => ! $classificationActive,
+                        'flex w-full items-center justify-between rounded-r-lg border-l-2 px-4 py-2 text-left text-sm transition-colors',
+                        'border-primary-300 text-primary-700'
+                            => $classificationActive,
+                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                            => ! $classificationActive,
                     ])
                 >
                     <span>Classifications</span>
@@ -176,9 +180,11 @@
                                     aria-current="page"
                                 @endif
                                 @class([
-                                    'ml-4 block rounded-lg border-l border-slate-700 px-4 py-2 text-sm transition-colors',
-                                    'bg-slate-800 text-white' => request()->routeIs($resource.'.*'),
-                                    'text-slate-500 hover:bg-slate-800 hover:text-white' => ! request()->routeIs($resource.'.*'),
+                                    'ml-4 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
+                                    'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                                        => request()->routeIs($resource.'.*'),
+                                    'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                                        => ! request()->routeIs($resource.'.*'),
                                 ])
                             >
                                 {{ ucfirst($resource) }}
@@ -210,8 +216,8 @@
             :aria-expanded="open.toString()"
             @class([
                 'flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors',
-                'text-white' => $inventoryActive,
-                'text-slate-300 hover:bg-slate-800 hover:text-white' => ! $inventoryActive,
+                'text-primary-700' => $inventoryActive,
+                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! $inventoryActive,
             ])
         >
             <span>Inventory</span>
@@ -246,10 +252,13 @@
                 {{-- Inventory Dashboard --}}
                 <a
                     href="{{ route('inventory.dashboard') }}"
+
                     @class([
-                        'ml-3 block rounded-lg border-l border-slate-700 px-4 py-2 text-sm transition-colors',
-                        'bg-slate-800 text-white' => request()->routeIs('inventory.dashboard'),
-                        'text-slate-400 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('inventory.dashboard'),
+                        'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                            => request()->routeIs('inventory.dashboard'),
+                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                            => ! request()->routeIs('inventory.dashboard'),
                     ])
                 >
                     Inventory Dashboard
@@ -259,10 +268,13 @@
                 {{-- Stock Overview --}}
                 <a
                     href="{{ route('inventory.index') }}"
-                    @class([
-                        'ml-3 block rounded-lg border-l border-slate-700 px-4 py-2 text-sm transition-colors',
-                        'bg-slate-800 text-white' => request()->routeIs('inventory.index', 'inventory.show'),
-                        'text-slate-400 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('inventory.index', 'inventory.show'),
+
+                     @class([
+                        'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                            => request()->routeIs('inventory.index', 'inventory.show'),
+                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                            => ! request()->routeIs('inventory.index', 'inventory.show'),
                     ])
                 >
                     Stock Overview
@@ -275,10 +287,13 @@
             @can('viewAny', App\Models\InventoryMovement::class)
                 <a
                     href="{{ route('inventory.movements') }}"
-                    @class([
-                        'ml-3 block rounded-lg border-l border-slate-700 px-4 py-2 text-sm transition-colors',
-                        'bg-slate-800 text-white' => request()->routeIs('inventory.movements'),
-                        'text-slate-400 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('inventory.movements'),
+
+                     @class([
+                        'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                            => request()->routeIs('inventory.movements'),
+                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                            => ! request()->routeIs('inventory.movements'),
                     ])
                 >
                     Stock Movements
@@ -290,11 +305,14 @@
             @can('viewAny', App\Models\StockAdjustment::class)
                 <a
                     href="{{ route('stock-adjustments.index') }}"
-                    @class([
-                        'ml-3 block rounded-lg border-l border-slate-700 px-4 py-2 text-sm transition-colors',
-                        'bg-slate-800 text-white' => request()->routeIs('stock-adjustments.*'),
-                        'text-slate-400 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('stock-adjustments.*'),
-                    ])
+
+                        @class([
+                            'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
+                            'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                                => request()->routeIs('stock-adjustments.*'),
+                            'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                                => ! request()->routeIs('stock-adjustments.*'),
+                        ])
                 >
                     Stock Adjustments
                 </a>
@@ -305,11 +323,14 @@
             @can('viewAny', App\Models\StockTransfer::class)
                 <a
                     href="{{ route('stock-transfers.index') }}"
-                    @class([
-                        'ml-3 block rounded-lg border-l border-slate-700 px-4 py-2 text-sm transition-colors',
-                        'bg-slate-800 text-white' => request()->routeIs('stock-transfers.*'),
-                        'text-slate-400 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('stock-transfers.*'),
-                    ])
+
+                        @class([
+                            'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
+                            'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                                => request()->routeIs('stock-transfers.*'),
+                            'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                                => ! request()->routeIs('stock-transfers.*'),
+                        ])
                 >
                     Stock Transfers
                 </a>
@@ -320,11 +341,14 @@
             @can('viewAny', App\Models\ProductBatch::class)
                 <a
                     href="{{ route('product-batches.index') }}"
-                    @class([
-                        'ml-3 block rounded-lg border-l border-slate-700 px-4 py-2 text-sm transition-colors',
-                        'bg-slate-800 text-white' => request()->routeIs('product-batches.*'),
-                        'text-slate-400 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('product-batches.*'),
-                    ])
+
+                        @class([
+                            'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
+                            'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                                => request()->routeIs('product-batches.*'),
+                            'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                                => ! request()->routeIs('product-batches.*'),
+                        ])
                 >
                     Batches & Expiration
                 </a>
@@ -350,8 +374,8 @@
             :aria-expanded="open.toString()"
             @class([
                 'flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors',
-                'text-white' => $purchasingActive,
-                'text-slate-300 hover:bg-slate-800 hover:text-white' => ! $purchasingActive,
+                'text-primary-700' => $purchasingActive,
+                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! $purchasingActive,
             ])
         >
             <span>Purchasing</span>
@@ -385,10 +409,13 @@
             @can('viewAny', \App\Models\PurchaseOrder::class)
                 <a
                     href="{{ route('purchase-orders.index') }}"
+
                     @class([
-                        'ml-3 block rounded-lg border-l border-slate-700 px-4 py-2 text-sm transition-colors',
-                        'bg-slate-800 text-white' => request()->routeIs('purchase-orders.*'),
-                        'text-slate-400 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('purchase-orders.*'),
+                        'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                            => request()->routeIs('purchase-orders.*'),
+                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                            => ! request()->routeIs('purchase-orders.*'),
                     ])
                 >
                     Purchase Orders
@@ -400,10 +427,13 @@
             @can('viewAny', App\Models\Supplier::class)
                 <a
                     href="{{ route('suppliers.index') }}"
+
                     @class([
-                        'ml-3 block rounded-lg border-l border-slate-700 px-4 py-2 text-sm transition-colors',
-                        'bg-slate-800 text-white' => request()->routeIs('suppliers.*'),
-                        'text-slate-400 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('suppliers.*'),
+                        'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                            => request()->routeIs('suppliers.*'),
+                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                            => ! request()->routeIs('suppliers.*'),
                     ])
                 >
                     Suppliers
@@ -427,8 +457,8 @@
             @endif
             @class([
                 'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                'bg-slate-800 text-white' => request()->routeIs('warehouses.*'),
-                'text-slate-300 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('warehouses.*'),
+                'bg-primary-50 text-primary-700' => request()->routeIs('warehouses.*'),
+                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! request()->routeIs('warehouses.*'),
             ])
         >
             Warehouses
@@ -452,8 +482,8 @@
             @endif
             @class([
                 'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                'bg-slate-800 text-white' => request()->routeIs('reports.*'),
-                'text-slate-300 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('reports.*'),
+                'bg-primary-50 text-primary-700' => request()->routeIs('reports.*'),
+                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! request()->routeIs('reports.*'),
             ])
         >
             Reports
@@ -473,8 +503,8 @@
             @endif
             @class([
                 'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                'bg-slate-800 text-white' => request()->routeIs('activity-logs.*'),
-                'text-slate-300 hover:bg-slate-800 hover:text-white' => ! request()->routeIs('activity-logs.*'),
+                'bg-primary-50 text-primary-700' => request()->routeIs('activity-logs.*'),
+                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! request()->routeIs('activity-logs.*'),
             ])
         >
             Activity Logs
