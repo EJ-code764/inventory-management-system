@@ -34,11 +34,11 @@ class ReportQuery
         'remaining_quantity', 'subtotal', 'discount', 'tax', 'previous_quantity', 'new_quantity', 'difference'];
 
     public const MONEY = [
-    'valuation',
-    'unit_cost',
-    'subtotal',
-    'discount',
-    'tax',
+        'valuation',
+        'unit_cost',
+        'subtotal',
+        'discount',
+        'tax',
     ];
 
     /** @return array<string, string> */
