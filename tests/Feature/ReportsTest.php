@@ -78,10 +78,21 @@ test('valuation combines remaining batch cost with untracked catalog cost withou
         ProductBatch::factory()->create(['stock_item_id' => $this->item->id, 'warehouse_id' => $this->warehouse->id, 'quantity' => $quantity, 'unit_cost' => $cost]);
     }
     $row = $this->reports->query('valuation')->sole();
-    expect(ReportQuery::decimal($row->valuation))->toBe('39.0000');
-    Livewire::actingAs($this->viewer)->test(ReportTable::class, ['report' => 'valuation'])->assertViewHas('valuation', '39.0000')->assertSee('39.0000');
+
+    expect(ReportQuery::decimal($row->valuation))
+        ->toBe('39.0000');
+
+    Livewire::actingAs($this->viewer)
+        ->test(ReportTable::class, ['report' => 'valuation'])
+        ->assertViewHas('valuation', '39.0000')
+        ->assertSee('₱39.00');
+
     $data = $this->reports->dashboard();
-    expect($data['cards']['Inventory value'])->toBe('39.0000')->and($data['cards']['Total inventory quantity'])->toBe('10.0000');
+
+    expect($data['cards']['Inventory value'])
+        ->toBe('39.0000')
+        ->and($data['cards']['Total inventory quantity'])
+        ->toBe('10.0000');
 });
 
 test('category search and warehouse filters intersect for variants', function () {

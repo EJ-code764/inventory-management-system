@@ -50,14 +50,6 @@
     --color-primary-900: #1e3a8a;
     --color-primary-950: #172554;
 
-    /*
-    |--------------------------------------------------------------------------
-    | Application Surfaces
-    |--------------------------------------------------------------------------
-    */
-
-    --color-surface: #ffffff;
-    --color-background: #f8fafc;
 
     /*
     |--------------------------------------------------------------------------
@@ -67,6 +59,60 @@
 
     --radius-card: 0.75rem;
     --radius-control: 0.5rem;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Semantic theme colors
+    |--------------------------------------------------------------------------
+    */
+
+    --color-background: var(--theme-background);
+    --color-surface: var(--theme-surface);
+    --color-surface-muted: var(--theme-surface-muted);
+
+    --color-foreground: var(--theme-foreground);
+    --color-muted: var(--theme-muted);
+
+    --color-border: var(--theme-border);
+
+}
+
+    /*
+    |--------------------------------------------------------------------------
+    | Light theme colors
+    |--------------------------------------------------------------------------
+    */
+
+:root {
+    color-scheme: light;
+
+    --theme-background: #f8fafc;
+    --theme-surface: #ffffff;
+    --theme-surface-muted: #f8fafc;
+
+    --theme-foreground: #0f172a;
+    --theme-muted: #64748b;
+
+    --theme-border: #e2e8f0;
+}
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dark theme colors
+    |--------------------------------------------------------------------------
+    */
+
+html.dark {
+    color-scheme: dark;
+
+    --theme-background: #0f172a;
+    --theme-surface: #111827;
+    --theme-surface-muted: #1e293b;
+
+    --theme-foreground: #f8fafc;
+    --theme-muted: #94a3b8;
+
+    --theme-border: #334155;
 }
 
 
@@ -83,7 +129,7 @@
     }
 
     body {
-        @apply min-h-screen bg-background font-sans text-slate-900 antialiased;
+        @apply min-h-screen bg-background font-sans text-foreground antialiased;
     }
 
     /*
@@ -127,11 +173,11 @@
     */
 
     table {
-        @apply text-slate-700;
+        @apply text-foreground;
     }
 
     th {
-        @apply font-medium text-slate-600;
+        @apply font-medium text-muted;
     }
 }
 
@@ -155,7 +201,7 @@
     */
 
     .app-card {
-        @apply rounded-xl border border-slate-200 bg-white shadow-sm;
+        @apply rounded-xl border border-border bg-surface shadow-sm;
     }
 
     .app-card-body {
@@ -193,12 +239,12 @@
     .btn-secondary {
         @apply inline-flex items-center justify-center gap-2
             rounded-lg
-            border border-slate-300
-            bg-white
+            border border-border
+            bg-surface
             px-4 py-2
-            text-sm font-medium text-slate-700
+            text-sm font-medium text-foreground
             shadow-sm
-            hover:bg-slate-50
+            hover:bg-surface-muted
             focus-visible:outline-none
             focus-visible:ring-2
             focus-visible:ring-primary-500
@@ -237,13 +283,13 @@
 
     .form-input {
         @apply w-full rounded-lg
-            border border-slate-300
-            bg-white
+            border border-border
+            bg-surface
             px-3 py-2
-            text-sm text-slate-900
+            text-sm text-foreground
             shadow-sm
-            placeholder:text-slate-400
-            hover:border-slate-400
+            placeholder:text-muted
+            hover:border-primary-300
             focus:border-primary-500
             focus:outline-none
             focus:ring-2
@@ -251,11 +297,11 @@
     }
 
     .form-label {
-        @apply mb-1 block text-sm font-medium text-slate-700;
+        @apply mb-1 block text-sm font-medium text-foreground;
     }
 
     .form-help {
-        @apply mt-1 text-sm text-slate-500;
+        @apply mt-1 text-sm text-muted;
     }
 
     /*
@@ -277,20 +323,20 @@
     */
 
     .app-table-container {
-        @apply overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-sm;
+        @apply overflow-x-auto rounded-xl border border-border bg-surface;
     }
 
     .app-table {
-        @apply w-full text-left text-sm;
+         @apply w-full text-left text-sm text-foreground;
     }
 
     .app-table thead {
-        @apply border-b border-slate-200 bg-slate-50;
+        @apply bg-surface-muted;
     }
 
     .app-table th {
         @apply whitespace-nowrap px-4 py-3
-            text-xs font-semibold uppercase tracking-wide text-slate-500;
+            text-xs font-semibold uppercase tracking-wide text-muted;
     }
 
     .app-table td {
@@ -298,9 +344,9 @@
     }
 
     .app-table tbody tr {
-        @apply border-b border-slate-100 transition-colors
+        @apply border-b border-border transition-colors
             last:border-b-0
-            hover:bg-slate-50/70;
+            hover:bg-surface-muted;
     }
 
     /*
@@ -331,7 +377,7 @@
     }
 
     .badge-neutral {
-        @apply bg-slate-100 text-slate-700;
+        @apply bg-slate-100 text-foreground;
     }
 
     /*
@@ -341,11 +387,11 @@
     */
 
     .page-title {
-        @apply text-2xl font-semibold tracking-tight text-slate-900;
+        @apply text-2xl font-semibold tracking-tight text-foreground;
     }
 
     .page-description {
-        @apply mt-1 text-sm text-slate-500;
+        @apply mt-1 text-sm text-muted;
     }
 
     /*
@@ -355,10 +401,10 @@
     */
 
     .section-title {
-        @apply text-lg font-semibold text-slate-900;
+        @apply text-lg font-semibold text-foreground;
     }
 
     .section-description {
-        @apply mt-1 text-sm text-slate-500;
+        @apply mt-1 text-sm text-muted;
     }
 }

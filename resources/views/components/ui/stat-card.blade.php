@@ -6,19 +6,19 @@
 
 <div
     {{ $attributes->class(
-        'rounded-xl border border-slate-200 bg-white p-5 shadow-sm'
+        'rrounded-xl border border-border bg-surface p-5 shadow-sm'
     ) }}
 >
-    <p class="text-sm font-medium text-slate-500">
+    <p class="text-sm font-medium text-muted">
         {{ $label }}
     </p>
 
-    <div class="mt-2 text-2xl font-semibold tracking-tight text-slate-900">
+    <div class="mt-2 text-2xl font-semibold tracking-tight text-foreground">
         {{ $value ?? $slot }}
     </div>
 
     @if ($description)
-        <p class="mt-1 text-xs text-slate-500">
+        <p class="mt-1 text-xs text-muted">
             {{ $description }}
         </p>
     @endif

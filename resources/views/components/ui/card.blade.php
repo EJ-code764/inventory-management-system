@@ -4,7 +4,7 @@
 
 <div
     {{ $attributes->class([
-        'rounded-xl border border-slate-200 bg-white shadow-sm',
+        'rounded-xl border border-border bg-surface shadow-sm',
         'p-5' => $padding,
     ]) }}
 >

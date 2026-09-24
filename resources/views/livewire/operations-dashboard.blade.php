@@ -4,11 +4,11 @@
     {{-- Filters --}}
     <x-ui.card class="mb-6">
         <div class="mb-4">
-            <h2 class="text-base font-semibold text-slate-900">
+            <h2 class="text-base font-semibold text-foreground">
                 Dashboard filters
             </h2>
 
-            <p class="mt-1 text-sm text-slate-500">
+            <p class="mt-1 text-sm text-muted">
                 Filter inventory insights by warehouse or category.
             </p>
         </div>
@@ -80,7 +80,7 @@
         </div>
 
         {{-- Valuation explanation --}}
-        <p class="mb-8 text-sm leading-6 text-slate-500">
+        <p class="mb-8 text-sm leading-6 text-muted">
             Value uses remaining batches at their recorded cost and
             untracked balances at current catalog cost. Expiring means
             today through 30 days inclusive; already-expired stock is
@@ -95,7 +95,7 @@
                     Recent stock movements
                 </h2>
 
-                <p class="mt-1 text-sm text-slate-500">
+                <p class="mt-1 text-sm text-muted">
                     Latest inventory changes recorded across your warehouses.
                 </p>
             </div>
@@ -124,7 +124,7 @@
 
                             <tr>
 
-                                <td class="whitespace-nowrap text-slate-500">
+                                <td class="whitespace-nowrap text-muted">
                                     {{ $movement->date }}
                                 </td>
 
@@ -133,7 +133,7 @@
                                         {{ $movement->product_name }}
                                     </div>
 
-                                    <div class="mt-0.5 text-xs text-slate-500">
+                                    <div class="mt-0.5 text-xs text-muted">
                                         {{ $movement->sku }}
                                     </div>
                                 </td>
@@ -188,7 +188,7 @@
                                         No recent stock movements
                                     </p>
 
-                                    <p class="mt-1 text-sm text-slate-500">
+                                    <p class="mt-1 text-sm text-muted">
                                         Inventory movements will appear here
                                         when stock changes occur.
                                     </p>
@@ -213,7 +213,7 @@
                     Recent purchases
                 </h2>
 
-                <p class="mt-1 text-sm text-slate-500">
+                <p class="mt-1 text-sm text-muted">
                     Latest purchase orders recorded in the system.
                 </p>
             </div>
@@ -263,7 +263,7 @@
                                     </a>
                                 </td>
 
-                                <td class="whitespace-nowrap text-slate-500">
+                                <td class="whitespace-nowrap text-muted">
                                     {{ $order->ordered_at?->format('Y-m-d') ?? '—' }}
                                 </td>
 
@@ -304,7 +304,7 @@
                                         No recent purchases
                                     </p>
 
-                                    <p class="mt-1 text-sm text-slate-500">
+                                    <p class="mt-1 text-sm text-muted">
                                         Recent purchase orders will appear here.
                                     </p>
                                 </td>
@@ -320,7 +320,7 @@
 
         </section>
 
-        <p class="mt-4 text-xs leading-5 text-slate-500">
+        <p class="mt-4 text-xs leading-5 text-muted">
             Latest 10 movements and 10 purchase documents.
             Category filters select matching purchase documents;
             displayed totals remain whole-document totals.
@@ -332,7 +332,7 @@
     <div
         wire:loading
         role="status"
-        class="fixed bottom-5 right-5 z-50 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-lg"
+        class="fixed bottom-5 right-5 z-50 rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-slate-600 shadow-lg"
     >
         Updating dashboard…
     </div>

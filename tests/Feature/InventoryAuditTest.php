@@ -23,6 +23,7 @@ test('sample account seeding is development only and idempotent', function (stri
     app()->instance('env', $environment);
     app(DatabaseSeeder::class)->__invoke();
     app(DatabaseSeeder::class)->__invoke();
+
     expect(User::where('email', 'test@example.com')->count())->toBe($count);
 })->with([['production', 0], ['staging', 0], ['local', 1]]);
 

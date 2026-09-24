@@ -42,8 +42,7 @@
                         </tr>
                     @endforeach
                 @empty<tr>
-                        <td colspan="8" class="p-8 text-center text-slate-500">No stock adjustments match your
-                            filters.</td>
+                        <td colspan="8" class="p-8 text-center text-slate-500">No stock adjustments match your filters.</td>
                     </tr>
                 @endforelse
             </tbody>
