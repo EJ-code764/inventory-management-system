@@ -3,11 +3,11 @@
     <div class="mb-6 grid gap-4 sm:grid-cols-3">
         <div><label for="report-search" class="block text-sm font-medium">Product, variant, SKU or barcode</label><input
                 id="report-search" type="search" wire:model.live.debounce.300ms="search" maxlength="255"
-                class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"></div>
+                class="mt-1 w-full rounded-lg border border-border px-3 py-2"></div>
         <div><label for="report-warehouse"
                 class="block text-sm font-medium">{{ $report === 'transfers' ? 'Source or destination warehouse' : 'Warehouse' }}</label><select
                 id="report-warehouse" wire:model.live="warehouse"
-                class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
+                class="mt-1 w-full rounded-lg border border-border px-3 py-2">
                 <option value="">All warehouses</option>
                 @foreach ($warehouses as $location)
                     <option value="{{ $location->id }}">{{ $location->name }}</option>
@@ -15,7 +15,7 @@
             </select>
         </div>
         <div><label for="report-category" class="block text-sm font-medium">Category</label><select id="report-category"
-                wire:model.live="category" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
+                wire:model.live="category" class="mt-1 w-full rounded-lg border border-border px-3 py-2">
                 <option value="">All categories</option>
                 @foreach ($categories as $option)
                     <option value="{{ $option->id }}">{{ $option->name }}</option>
@@ -24,15 +24,15 @@
         @if (isset(\App\Services\ReportQuery::DATES[$report]))
             <div><label for="report-from" class="block text-sm font-medium">From date (inclusive)</label><input
                     id="report-from" type="date" wire:model.live="from"
-                    class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"></div>
+                    class="mt-1 w-full rounded-lg border border-border px-3 py-2"></div>
             <div><label for="report-to" class="block text-sm font-medium">To date (inclusive)</label><input
                     id="report-to" type="date" wire:model.live="to"
-                    class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2"></div>
+                    class="mt-1 w-full rounded-lg border border-border px-3 py-2"></div>
         @endif
         @if ($report === 'expiration')
             <div><label for="report-period" class="block text-sm font-medium">Expiration window</label><select
                     id="report-period" wire:model.live="period"
-                    class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
+                    class="mt-1 w-full rounded-lg border border-border px-3 py-2">
                     <option value="all">All positive-stock batches</option>
                     <option value="7">Within 7 days</option>
                     <option value="30">Within 30 days</option>
@@ -42,12 +42,12 @@
     </div>
     <button wire:click="clearFilters" class="mb-4 text-sm underline">Clear filters</button>
     @if (in_array($report, ['inventory', 'valuation', 'low-stock']))
-        <p class="mb-4 text-sm text-slate-600">Current snapshot, not a historical balance. Inventory and low-stock
+        <p class="mb-4 text-sm text-muted">Current snapshot, not a historical balance. Inventory and low-stock
             reports include zero balances for unstocked SKU/warehouse pairs, including inactive records. Low stock means
             on hand ≤ reorder level.</p>
     @endif
     @if ($report === 'valuation')
-        <p class="mb-4 text-sm text-slate-600">Value = remaining batch quantity × batch unit cost, plus untracked
+        <p class="mb-4 text-sm text-muted">Value = remaining batch quantity × batch unit cost, plus untracked
             quantity × current catalog cost. Includes reserved and expired stock. This is an operational valuation, not
             a historical accounting valuation.</p>
         @if ($valuation !== null)
@@ -59,18 +59,18 @@
         @endif
     @endif
     @if (in_array($report, ['purchases', 'adjustments', 'transfers']))
-        <p class="mb-4 text-sm text-slate-600">One row per matching document line. Purchase dates use order date;
+        <p class="mb-4 text-sm text-muted">One row per matching document line. Purchase dates use order date;
             adjustments use recorded date; transfers use transfer date. Draft/cancelled transfers are shown with their
             status and do not represent completed stock movement. Transfer warehouse filtering matches either endpoint.
         </p>
     @endif
     @if ($report === 'expiration')
-        <p class="mb-4 text-sm text-slate-600">Only positive batch quantities are included. Upcoming windows include
+        <p class="mb-4 text-sm text-muted">Only positive batch quantities are included. Upcoming windows include
             today and the final day. Expired means before today. Date filters intersect the selected window; choose
             “All” for a custom range. Nothing is automatically removed.</p>
     @endif
     @if ($rows)
-        <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+        <div class="overflow-x-auto rounded-xl border border-border bg-surface">
             <table class="w-full text-left text-sm">
                 <thead>
                     <tr class="border-b">
@@ -113,7 +113,7 @@
         </div>
         <div class="mt-4">{{ $rows->links() }}</div>
     @else
-        <p class="rounded-xl bg-white p-6">Correct the filter errors to view this report.</p>
+        <p class="rounded-xl bg-surface p-6">Correct the filter errors to view this report.</p>
     @endif
     <p wire:loading role="status">Updating report…</p>
 </div>

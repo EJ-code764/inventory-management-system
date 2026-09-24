@@ -401,7 +401,7 @@
                     </div>
 
                     <div class="hidden text-right sm:block">
-                        <p class="text-sm font-medium text-slate-800">
+                        <p class="text-sm font-medium text-foreground">
                             {{ auth()->user()->name }}
                         </p>
                     </div>

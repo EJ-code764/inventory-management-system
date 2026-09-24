@@ -55,9 +55,6 @@
                 @foreach ($order->items as $item)
                     <tr class="border-b">
                         <td class="p-3"><x-purchase-item-label :item="$item->stockItem" /></td>
-                        {{-- @foreach ([$item->ordered_quantity, $item->received_quantity, $item->remainingQuantity(), $item->unit_cost, $item->discount, $item->tax, $item->subtotal] as $value)
-                            <td class="p-3 tabular-nums">{{ $value }}</td>
-                        @endforeach --}}
                         <tr class="border-b">
                             <td class="p-3">
                                 <x-purchase-item-label :item="$item->stockItem" />
@@ -100,12 +97,6 @@
             </tbody>
         </table>
         <dl class="ml-auto mt-5 max-w-xs space-y-2">
-            {{-- @foreach (['subtotal', 'discount', 'tax', 'total'] as $field)
-                <div class="flex justify-between gap-6">
-                    <dt>{{ ucfirst($field) }}</dt>
-                    <dd class="font-semibold tabular-nums">{{ $order->{$field} }}</dd>
-                </div>
-            @endforeach --}}
             @foreach (['subtotal', 'discount', 'tax', 'total'] as $field)
             <div class="flex justify-between gap-6">
                 <dt>{{ ucfirst($field) }}</dt>
