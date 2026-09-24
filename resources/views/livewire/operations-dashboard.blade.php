@@ -1,112 +1,340 @@
 <div>
     <x-alert />
-    <div class="mb-6 grid gap-4 sm:grid-cols-2">
-        <div><label for="dashboard-warehouse" class="block text-sm font-medium">Warehouse</label><select
-                id="dashboard-warehouse" wire:model.live="warehouse"
-                class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
-                <option value="">All warehouses</option>
-                @foreach ($warehouses as $location)
-                    <option value="{{ $location->id }}">{{ $location->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div><label for="dashboard-category" class="block text-sm font-medium">Category</label><select
-                id="dashboard-category" wire:model.live="category"
-                class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2">
-                <option value="">All categories</option>
-                @foreach ($categories as $option)
-                    <option value="{{ $option->id }}">{{ $option->name }}</option>
-                @endforeach
-            </select>
-        </div>
-    </div>
-    <p class="mb-6 text-sm text-slate-600">Current balances, including reserved, expired and inactive stock. Total
-        quantity adds different units and is an operational count, not a physical measurement. Product count follows
-        category but not warehouse; supplier and warehouse counts are global. Low-stock and expiring counts are distinct
-        products, including variant parents.</p>
-    @if ($data)
-        <div class="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {{-- @foreach ($data['cards'] as $label => $value)
-                <section class="rounded-xl border border-slate-200 bg-white p-5">
-                    <h2 class="text-sm text-slate-600">{{ $label }}</h2>
-                    <p class="mt-2 break-all text-2xl font-semibold">{{ $value }}</p>
-                </section>
-            @endforeach --}}
-            @foreach ($data['cards'] as $label => $value)
-                <section class="rounded-xl border border-slate-200 bg-white p-5">
-                    <h2 class="text-sm text-slate-600">{{ $label }}</h2>
 
-                    <p class="mt-2 break-all text-2xl font-semibold">
-                        @if ($label === 'Inventory value')
-                            <x-money :amount="$value" />
-                        @else
-                            {{ $value }}
-                        @endif
-                    </p>
-                </section>
+    {{-- Filters --}}
+    <x-ui.card class="mb-6">
+        <div class="mb-4">
+            <h2 class="text-base font-semibold text-slate-900">
+                Dashboard filters
+            </h2>
+
+            <p class="mt-1 text-sm text-slate-500">
+                Filter inventory insights by warehouse or category.
+            </p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+
+            <x-ui.select
+                name="dashboard-warehouse"
+                label="Warehouse"
+                wire:model.live="warehouse"
+            >
+                <option value="">All warehouses</option>
+
+                @foreach ($warehouses as $location)
+                    <option value="{{ $location->id }}">
+                        {{ $location->name }}
+                    </option>
+                @endforeach
+            </x-ui.select>
+
+            <x-ui.select
+                name="dashboard-category"
+                label="Category"
+                wire:model.live="category"
+            >
+                <option value="">All categories</option>
+
+                @foreach ($categories as $option)
+                    <option value="{{ $option->id }}">
+                        {{ $option->name }}
+                    </option>
+                @endforeach
+            </x-ui.select>
+
+        </div>
+    </x-ui.card>
+
+    {{-- Dashboard description --}}
+    <div class="mb-6 rounded-xl border border-primary-100 bg-primary-50/50 px-4 py-3">
+        <p class="text-sm leading-6 text-slate-600">
+            Current balances include reserved, expired and inactive stock.
+            Total quantity adds different units and is an operational count,
+            not a physical measurement. Product count follows category but
+            not warehouse; supplier and warehouse counts are global.
+            Low-stock and expiring counts are distinct products, including
+            variant parents.
+        </p>
+    </div>
+
+    @if ($data)
+
+        {{-- Summary cards --}}
+        <div class="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+            @foreach ($data['cards'] as $label => $value)
+
+                <x-ui.stat-card :label="$label">
+
+                    @if ($label === 'Inventory value')
+                        <x-money :amount="$value" />
+                    @else
+                        {{ $value }}
+                    @endif
+
+                </x-ui.stat-card>
+
             @endforeach
+
         </div>
-        <p class="mb-6 text-sm text-slate-600">Value uses remaining batches at their recorded cost and untracked
-            balances at current catalog cost. Expiring means today through 30 days inclusive; already-expired stock is
-            available in the expiration report.</p>
-        <h2 class="mb-3 text-lg font-semibold">Recent stock movements</h2>
-        <div class="mb-8 overflow-x-auto rounded-xl bg-white">
-            <table class="w-full text-left text-sm">
-                <thead>
-                    <tr>
-                        <th class="p-3">Date</th>
-                        <th class="p-3">Product / SKU</th>
-                        <th class="p-3">Warehouse</th>
-                        <th class="p-3">Type</th>
-                        <th class="p-3">Quantity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($data['movements'] as $movement)
-                        <tr class="border-t">
-                            <td class="p-3">{{ $movement->date }}</td>
-                            <td class="p-3">{{ $movement->product_name }} — {{ $movement->sku }}</td>
-                            <td class="p-3">{{ $movement->warehouse_name }}</td>
-                            <td class="p-3">{{ $movement->type }}</td>
-                            <td class="p-3">{{ \App\Services\ReportQuery::decimal($movement->quantity_delta) }}</td>
-                    </tr>@empty<tr>
-                            <td colspan="5" class="p-6">No recent movements.</td>
+
+        {{-- Valuation explanation --}}
+        <p class="mb-8 text-sm leading-6 text-slate-500">
+            Value uses remaining batches at their recorded cost and
+            untracked balances at current catalog cost. Expiring means
+            today through 30 days inclusive; already-expired stock is
+            available in the expiration report.
+        </p>
+
+        {{-- Recent Stock Movements --}}
+        <section class="mb-8">
+
+            <div class="mb-4">
+                <h2 class="text-lg font-semibold tracking-tight text-slate-900">
+                    Recent stock movements
+                </h2>
+
+                <p class="mt-1 text-sm text-slate-500">
+                    Latest inventory changes recorded across your warehouses.
+                </p>
+            </div>
+
+            <div class="app-table-container">
+
+                <table class="app-table">
+
+                    <caption class="sr-only">
+                        Recent stock movements
+                    </caption>
+
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Product / SKU</th>
+                            <th>Warehouse</th>
+                            <th>Type</th>
+                            <th class="text-right">Quantity</th>
                         </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        <h2 class="mb-3 text-lg font-semibold">Recent purchases</h2>
-        <div class="overflow-x-auto rounded-xl bg-white">
-            <table class="w-full text-left text-sm">
-                <thead>
-                    <tr>
-                        <th class="p-3">Purchase</th>
-                        <th class="p-3">Date</th>
-                        <th class="p-3">Supplier</th>
-                        <th class="p-3">Warehouse</th>
-                        <th class="p-3">Status</th>
-                        <th class="p-3">Document total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($data['purchases'] as $order)
-                        <tr class="border-t">
-                            <td class="p-3">{{ $order->number }}</td>
-                            <td class="p-3">{{ $order->ordered_at?->format('Y-m-d') }}</td>
-                            <td class="p-3">{{ $order->supplier->name }}</td>
-                            <td class="p-3">{{ $order->warehouse->name }}</td>
-                            <td class="p-3">{{ $order->status->value }}</td>
-                            <td class="p-3">{{ $order->total }}</td>
-                    </tr>@empty<tr>
-                            <td colspan="6" class="p-6">No recent purchases.</td>
+                    </thead>
+
+                    <tbody>
+
+                        @forelse ($data['movements'] as $movement)
+
+                            <tr>
+
+                                <td class="whitespace-nowrap text-slate-500">
+                                    {{ $movement->date }}
+                                </td>
+
+                                <td>
+                                    <div class="font-medium text-slate-900">
+                                        {{ $movement->product_name }}
+                                    </div>
+
+                                    <div class="mt-0.5 text-xs text-slate-500">
+                                        {{ $movement->sku }}
+                                    </div>
+                                </td>
+
+                                <td>
+                                    {{ $movement->warehouse_name }}
+                                </td>
+
+                                <td>
+                                    @php
+                                        $movementVariant = match (strtolower($movement->type)) {
+                                            'purchase' => 'success',
+                                            'adjustment' => 'warning',
+                                            'transfer' => 'primary',
+                                            'sale' => 'danger',
+                                            default => 'neutral',
+                                        };
+                                    @endphp
+
+                                    <x-ui.badge :variant="$movementVariant">
+                                        {{ strtoupper($movement->type) }}
+                                    </x-ui.badge>
+                                </td>
+
+                                <td
+                                    @class([
+                                        'text-right font-medium tabular-nums',
+                                        'text-emerald-600' => $movement->quantity_delta > 0,
+                                        'text-red-600' => $movement->quantity_delta < 0,
+                                        'text-slate-600' => $movement->quantity_delta == 0,
+                                    ])
+                                >
+                                    @if ($movement->quantity_delta > 0)
+                                        +
+                                    @endif
+
+                                    {{ \App\Services\ReportQuery::decimal(
+                                        $movement->quantity_delta
+                                    ) }}
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+                                <td
+                                    colspan="5"
+                                    class="px-4 py-12 text-center"
+                                >
+                                    <p class="font-medium text-slate-700">
+                                        No recent stock movements
+                                    </p>
+
+                                    <p class="mt-1 text-sm text-slate-500">
+                                        Inventory movements will appear here
+                                        when stock changes occur.
+                                    </p>
+                                </td>
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        {{-- Recent Purchases --}}
+        <section>
+
+            <div class="mb-4">
+                <h2 class="text-lg font-semibold tracking-tight text-slate-900">
+                    Recent purchases
+                </h2>
+
+                <p class="mt-1 text-sm text-slate-500">
+                    Latest purchase orders recorded in the system.
+                </p>
+            </div>
+
+            <div class="app-table-container">
+
+                <table class="app-table">
+
+                    <caption class="sr-only">
+                        Recent purchase orders
+                    </caption>
+
+                    <thead>
+                        <tr>
+                            <th>Purchase</th>
+                            <th>Date</th>
+                            <th>Supplier</th>
+                            <th>Warehouse</th>
+                            <th>Status</th>
+                            <th class="text-right">Document total</th>
                         </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        <p class="mt-3 text-xs text-slate-500">Latest 10 movements and 10 purchase documents. Category filters select
-            matching purchase documents; displayed totals remain whole-document totals.</p>
+                    </thead>
+
+                    <tbody>
+
+                        @forelse ($data['purchases'] as $order)
+
+                            @php
+                                $statusVariant = match ($order->status->value) {
+                                    'received' => 'success',
+                                    'partially_received' => 'warning',
+                                    'ordered' => 'primary',
+                                    'cancelled' => 'danger',
+                                    'draft' => 'neutral',
+                                    default => 'neutral',
+                                };
+                            @endphp
+
+                            <tr>
+
+                                <td>
+                                    <a
+                                        href="{{ route('purchase-orders.show', $order) }}"
+                                        class="font-medium text-primary-600 transition hover:text-primary-700 hover:underline"
+                                    >
+                                        {{ $order->number }}
+                                    </a>
+                                </td>
+
+                                <td class="whitespace-nowrap text-slate-500">
+                                    {{ $order->ordered_at?->format('Y-m-d') ?? '—' }}
+                                </td>
+
+                                <td>
+                                    <span class="font-medium text-slate-900">
+                                        {{ $order->supplier->name }}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    {{ $order->warehouse->name }}
+                                </td>
+
+                                <td>
+                                    <x-ui.badge :variant="$statusVariant">
+                                        {{ str_replace(
+                                            '_',
+                                            ' ',
+                                            ucfirst($order->status->value)
+                                        ) }}
+                                    </x-ui.badge>
+                                </td>
+
+                                <td class="text-right font-medium tabular-nums text-slate-900">
+                                    <x-money :amount="$order->total" />
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+                                <td
+                                    colspan="6"
+                                    class="px-4 py-12 text-center"
+                                >
+                                    <p class="font-medium text-slate-700">
+                                        No recent purchases
+                                    </p>
+
+                                    <p class="mt-1 text-sm text-slate-500">
+                                        Recent purchase orders will appear here.
+                                    </p>
+                                </td>
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <p class="mt-4 text-xs leading-5 text-slate-500">
+            Latest 10 movements and 10 purchase documents.
+            Category filters select matching purchase documents;
+            displayed totals remain whole-document totals.
+        </p>
+
     @endif
-    <p wire:loading role="status">Updating dashboard…</p>
+
+    {{-- Livewire loading indicator --}}
+    <div
+        wire:loading
+        role="status"
+        class="fixed bottom-5 right-5 z-50 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-lg"
+    >
+        Updating dashboard…
+    </div>
+
 </div>
