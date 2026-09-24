@@ -48,7 +48,7 @@
 
     {{-- Dashboard description --}}
     <div class="mb-6 rounded-xl border border-primary-100 bg-primary-50/50 px-4 py-3">
-        <p class="text-sm leading-6 text-slate-600">
+        <p class="text-sm leading-6 text-muted">
             Current balances include reserved, expired and inactive stock.
             Total quantity adds different units and is an operational count,
             not a physical measurement. Product count follows category but
@@ -91,7 +91,7 @@
         <section class="mb-8">
 
             <div class="mb-4">
-                <h2 class="text-lg font-semibold tracking-tight text-slate-900">
+                <h2 class="text-lg font-semibold tracking-tight text-foreground">
                     Recent stock movements
                 </h2>
 
@@ -129,7 +129,7 @@
                                 </td>
 
                                 <td>
-                                    <div class="font-medium text-slate-900">
+                                    <div class="font-medium text-foreground">
                                         {{ $movement->product_name }}
                                     </div>
 
@@ -163,7 +163,7 @@
                                         'text-right font-medium tabular-nums',
                                         'text-emerald-600' => $movement->quantity_delta > 0,
                                         'text-red-600' => $movement->quantity_delta < 0,
-                                        'text-slate-600' => $movement->quantity_delta == 0,
+                                        'text-muted' => $movement->quantity_delta == 0,
                                     ])
                                 >
                                     @if ($movement->quantity_delta > 0)
@@ -209,7 +209,7 @@
         <section>
 
             <div class="mb-4">
-                <h2 class="text-lg font-semibold tracking-tight text-slate-900">
+                <h2 class="text-lg font-semibold tracking-tight text-foreground">
                     Recent purchases
                 </h2>
 
@@ -268,7 +268,7 @@
                                 </td>
 
                                 <td>
-                                    <span class="font-medium text-slate-900">
+                                    <span class="font-medium text-foreground">
                                         {{ $order->supplier->name }}
                                     </span>
                                 </td>
@@ -287,7 +287,7 @@
                                     </x-ui.badge>
                                 </td>
 
-                                <td class="text-right font-medium tabular-nums text-slate-900">
+                                <td class="text-right font-medium tabular-nums text-foreground">
                                     <x-money :amount="$order->total" />
                                 </td>
 
@@ -332,7 +332,7 @@
     <div
         wire:loading
         role="status"
-        class="fixed bottom-5 right-5 z-50 rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-slate-600 shadow-lg"
+        class="fixed bottom-5 right-5 z-50 rounded-lg border border-border bg-surface px-4 py-2 text-sm font-medium text-muted shadow-lg"
     >
         Updating dashboard…
     </div>

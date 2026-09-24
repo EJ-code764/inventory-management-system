@@ -1,12 +1,12 @@
 <div class="space-y-4">
-    <div class="grid gap-4 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-2">
+    <div class="grid gap-4 rounded-xl border border-border bg-surface p-4 sm:grid-cols-2">
         <div><label for="adjustment-search" class="mb-1 block text-sm font-medium">Search adjustments</label><input
                 id="adjustment-search" type="search" wire:model.live.debounce.300ms="search" maxlength="255"
-                placeholder="Number, SKU, product or reason" class="w-full rounded-lg border border-slate-300 px-3 py-2">
+                placeholder="Number, SKU, product or reason" class="w-full rounded-lg border border-border px-3 py-2">
         </div>
         <div><label for="adjustment-warehouse-filter" class="mb-1 block text-sm font-medium">Warehouse</label><select
                 id="adjustment-warehouse-filter" wire:model.live="warehouse"
-                class="w-full rounded-lg border border-slate-300 px-3 py-2">
+                class="w-full rounded-lg border border-border px-3 py-2">
                 <option value="">All warehouses</option>
                 @foreach ($warehouses as $location)
                     <option value="{{ $location->id }}">{{ $location->name }}</option>
@@ -15,9 +15,9 @@
         </div>
         <button type="button" wire:click="clearFilters" class="text-left text-sm underline">Clear filters</button>
     </div>
-    <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+    <div class="overflow-x-auto rounded-xl border border-border bg-surface">
         <table class="w-full text-left text-sm">
-            <thead class="bg-slate-50">
+            <thead class="bg-surface-muted">
                 <tr>
                     @foreach (['Adjustment', 'Warehouse', 'Product / SKU', 'Previous', 'New', 'Difference', 'Reason', 'User / Time'] as $heading)
                         <th class="p-3">{{ $heading }}</th>
@@ -42,7 +42,7 @@
                         </tr>
                     @endforeach
                 @empty<tr>
-                        <td colspan="8" class="p-8 text-center text-slate-500">No stock adjustments match your filters.</td>
+                        <td colspan="8" class="p-8 text-center text-muted">No stock adjustments match your filters.</td>
                     </tr>
                 @endforelse
             </tbody>

@@ -1,11 +1,11 @@
 <div class="space-y-4">
-    <div class="grid gap-4 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid gap-4 rounded-xl border border-border bg-surface p-4 sm:grid-cols-2 lg:grid-cols-4">
         <div><label for="transfer-filter-search" class="mb-1 block text-sm font-medium">Search</label><input
                 id="transfer-filter-search" type="search" wire:model.live.debounce.300ms="search" maxlength="255"
-                placeholder="Number, SKU or remarks" class="w-full rounded-lg border border-slate-300 px-3 py-2"></div>
+                placeholder="Number, SKU or remarks" class="w-full rounded-lg border border-border px-3 py-2"></div>
         <div><label for="transfer-filter-status" class="mb-1 block text-sm font-medium">Status</label><select
                 id="transfer-filter-status" wire:model.live="status"
-                class="w-full rounded-lg border border-slate-300 px-3 py-2">
+                class="w-full rounded-lg border border-border px-3 py-2">
                 <option value="">All statuses</option>
                 @foreach ($statuses as $state)
                     <option value="{{ $state->value }}">{{ strtoupper($state->value) }}</option>
@@ -16,7 +16,7 @@
             <div><label for="transfer-filter-{{ $field }}"
                     class="mb-1 block text-sm font-medium">{{ $label }}</label><select
                     id="transfer-filter-{{ $field }}" wire:model.live="{{ $field }}"
-                    class="w-full rounded-lg border border-slate-300 px-3 py-2">
+                    class="w-full rounded-lg border border-border px-3 py-2">
                     <option value="">All warehouses</option>
                     @foreach ($warehouses as $warehouse)
                         <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
@@ -26,9 +26,9 @@
         @endforeach
         <button type="button" wire:click="clearFilters" class="text-left text-sm underline">Clear filters</button>
     </div>
-    <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+    <div class="overflow-x-auto rounded-xl border border-border bg-surface">
         <table class="w-full text-left text-sm">
-            <thead class="bg-slate-50">
+            <thead class="bg-surface-muted">
                 <tr>
                     @foreach (['Transfer', 'Source', 'Destination', 'Date', 'Status', 'Created by'] as $label)
                         <th class="p-4">{{ $label }}</th>
@@ -46,7 +46,7 @@
                         <td class="p-4">{{ strtoupper($transfer->status->value) }}</td>
                         <td class="p-4">{{ $transfer->creator->name }}</td>
                 </tr>@empty<tr>
-                        <td colspan="6" class="p-8 text-center text-slate-500">No stock transfers match your filters.
+                        <td colspan="6" class="p-8 text-center text-muted">No stock transfers match your filters.
                         </td>
                     </tr>
                 @endforelse

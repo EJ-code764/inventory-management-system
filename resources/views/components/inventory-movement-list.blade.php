@@ -1,8 +1,8 @@
 @props(['movements'])
-<div class="overflow-x-auto rounded-xl bg-white shadow-sm">
+<div class="overflow-x-auto rounded-xl bg-surface shadow-sm">
     <table class="w-full text-left text-sm">
         <caption class="sr-only">Inventory movements</caption>
-        <thead class="border-b bg-slate-50">
+        <thead class="border-b bg-surface-muted">
             <tr>
                 @foreach (['Time', 'SKU', 'Warehouse', 'Type', 'Change', 'Before', 'After', 'Unit cost', 'User', 'Reference', 'Remarks'] as $heading)
                     <th scope="col" class="whitespace-nowrap px-4 py-3">{{ $heading }}</th>
@@ -35,7 +35,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="11" class="p-8 text-center text-slate-500">No stock movements found.</td>
+                    <td colspan="11" class="p-8 text-center text-muted">No stock movements found.</td>
                 </tr>
             @endforelse
         </tbody>

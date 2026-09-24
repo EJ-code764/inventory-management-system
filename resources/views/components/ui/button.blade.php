@@ -7,9 +7,9 @@
 @php
     $variants = [
         'primary' => 'bg-primary-600 text-white shadow-sm hover:bg-primary-700 focus-visible:ring-primary-500',
-        'secondary' => 'border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-50 focus-visible:ring-primary-500',
+        'secondary' => 'border border-border bg-surface text-slate-700 shadow-sm hover:bg-surface-muted focus-visible:ring-primary-500',
         'danger' => 'bg-red-600 text-white shadow-sm hover:bg-red-700 focus-visible:ring-red-500',
-        'ghost' => 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus-visible:ring-primary-500',
+        'ghost' => 'text-muted hover:bg-slate-100 hover:text-foreground focus-visible:ring-primary-500',
     ];
 
     $sizes = [

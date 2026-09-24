@@ -4,7 +4,7 @@
     <h1 class="my-6 text-2xl font-semibold">Receipt {{ $receipt->number }}</h1>
     <p class="mb-6">Received by {{ $receipt->receiver->name }} at {{ $receipt->received_at->format('Y-m-d H:i') }} into
         {{ $receipt->warehouse->name }}.</p>
-    <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white p-6">
+    <div class="overflow-x-auto rounded-xl border border-border bg-surface p-6">
         <table class="w-full text-left text-sm">
             <thead>
                 <tr class="border-b">
@@ -33,6 +33,6 @@
     @if ($receipt->notes)
         <p class="mt-6 whitespace-pre-line">{{ $receipt->notes }}</p>
     @endif
-    <p class="mt-6 text-sm text-slate-600">This receipt is immutable. Each received line created a PURCHASE inventory
+    <p class="mt-6 text-sm text-muted">This receipt is immutable. Each received line created a PURCHASE inventory
         movement linked to this receipt.</p>
 </x-layouts.app>

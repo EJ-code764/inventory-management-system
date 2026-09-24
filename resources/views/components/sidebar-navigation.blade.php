@@ -49,7 +49,7 @@
         @class([
             'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
             'bg-primary-50 text-primary-700' => request()->routeIs('dashboard'),
-            'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! request()->routeIs('dashboard'),
+            'text-muted hover:bg-slate-100 hover:text-foreground' => ! request()->routeIs('dashboard'),
         ])
     >
         Dashboard
@@ -73,7 +73,7 @@
             @class([
                 'flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors',
                 'text-primary-700' => $productManagementActive,
-                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! $productManagementActive,
+                'text-muted hover:bg-slate-100 hover:text-foreground' => ! $productManagementActive,
             ])
         >
             <span>Product Management</span>
@@ -114,7 +114,7 @@
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
                         'border-primary-500 bg-primary-50 font-medium text-primary-700'
                             => request()->routeIs('products.*'),
-                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                        'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('products.*'),
                     ])
                 >
@@ -137,7 +137,7 @@
                         'flex w-full items-center justify-between rounded-r-lg border-l-2 px-4 py-2 text-left text-sm transition-colors',
                         'border-primary-300 text-primary-700'
                             => $classificationActive,
-                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                        'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! $classificationActive,
                     ])
                 >
@@ -183,7 +183,7 @@
                                     'ml-4 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
                                     'border-primary-500 bg-primary-50 font-medium text-primary-700'
                                         => request()->routeIs($resource.'.*'),
-                                    'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                                    'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                                         => ! request()->routeIs($resource.'.*'),
                                 ])
                             >
@@ -217,7 +217,7 @@
             @class([
                 'flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors',
                 'text-primary-700' => $inventoryActive,
-                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! $inventoryActive,
+                'text-muted hover:bg-slate-100 hover:text-foreground' => ! $inventoryActive,
             ])
         >
             <span>Inventory</span>
@@ -257,7 +257,7 @@
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
                         'border-primary-500 bg-primary-50 font-medium text-primary-700'
                             => request()->routeIs('inventory.dashboard'),
-                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                        'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('inventory.dashboard'),
                     ])
                 >
@@ -273,7 +273,7 @@
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
                         'border-primary-500 bg-primary-50 font-medium text-primary-700'
                             => request()->routeIs('inventory.index', 'inventory.show'),
-                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                        'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('inventory.index', 'inventory.show'),
                     ])
                 >
@@ -292,7 +292,7 @@
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
                         'border-primary-500 bg-primary-50 font-medium text-primary-700'
                             => request()->routeIs('inventory.movements'),
-                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                        'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('inventory.movements'),
                     ])
                 >
@@ -310,7 +310,7 @@
                             'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
                             'border-primary-500 bg-primary-50 font-medium text-primary-700'
                                 => request()->routeIs('stock-adjustments.*'),
-                            'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                            'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                                 => ! request()->routeIs('stock-adjustments.*'),
                         ])
                 >
@@ -328,7 +328,7 @@
                             'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
                             'border-primary-500 bg-primary-50 font-medium text-primary-700'
                                 => request()->routeIs('stock-transfers.*'),
-                            'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                            'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                                 => ! request()->routeIs('stock-transfers.*'),
                         ])
                 >
@@ -346,7 +346,7 @@
                             'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
                             'border-primary-500 bg-primary-50 font-medium text-primary-700'
                                 => request()->routeIs('product-batches.*'),
-                            'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                            'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                                 => ! request()->routeIs('product-batches.*'),
                         ])
                 >
@@ -375,7 +375,7 @@
             @class([
                 'flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors',
                 'text-primary-700' => $purchasingActive,
-                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! $purchasingActive,
+                'text-muted hover:bg-slate-100 hover:text-foreground' => ! $purchasingActive,
             ])
         >
             <span>Purchasing</span>
@@ -414,7 +414,7 @@
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
                         'border-primary-500 bg-primary-50 font-medium text-primary-700'
                             => request()->routeIs('purchase-orders.*'),
-                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                        'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('purchase-orders.*'),
                     ])
                 >
@@ -432,7 +432,7 @@
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
                         'border-primary-500 bg-primary-50 font-medium text-primary-700'
                             => request()->routeIs('suppliers.*'),
-                        'border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900'
+                        'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('suppliers.*'),
                     ])
                 >
@@ -458,7 +458,7 @@
             @class([
                 'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                 'bg-primary-50 text-primary-700' => request()->routeIs('warehouses.*'),
-                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! request()->routeIs('warehouses.*'),
+                'text-muted hover:bg-slate-100 hover:text-foreground' => ! request()->routeIs('warehouses.*'),
             ])
         >
             Warehouses
@@ -483,7 +483,7 @@
             @class([
                 'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                 'bg-primary-50 text-primary-700' => request()->routeIs('reports.*'),
-                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! request()->routeIs('reports.*'),
+                'text-muted hover:bg-slate-100 hover:text-foreground' => ! request()->routeIs('reports.*'),
             ])
         >
             Reports
@@ -504,7 +504,7 @@
             @class([
                 'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                 'bg-primary-50 text-primary-700' => request()->routeIs('activity-logs.*'),
-                'text-slate-600 hover:bg-slate-100 hover:text-slate-900' => ! request()->routeIs('activity-logs.*'),
+                'text-muted hover:bg-slate-100 hover:text-foreground' => ! request()->routeIs('activity-logs.*'),
             ])
         >
             Activity Logs

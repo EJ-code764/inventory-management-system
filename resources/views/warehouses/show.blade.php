@@ -4,18 +4,19 @@
         <h1 class="text-2xl font-semibold">{{ $warehouse->name }}</h1>
         @can('update', $warehouse)
             <div class="flex gap-3" x-data>
-                <a class="rounded-lg bg-surface-muted px-4 py-2 text-white" href="{{ route('warehouses.edit', $warehouse) }}">Edit warehouse</a>
+                <a class="btn-primary" href="{{ route('warehouses.edit', $warehouse) }}">Edit warehouse</a>
                 @php($activating = $warehouse->status === 'inactive')
-                <button type="button" class="rounded-lg border border-border px-4 py-2" x-on:click="$refs.confirm.showModal()">{{ $activating ? 'Activate' : 'Deactivate' }}</button>
-                <dialog x-ref="confirm" class="m-auto w-full max-w-md rounded-xl p-6 backdrop:bg-surface-muted/50" aria-labelledby="warehouse-status-title">
+                <button type="button" class="btn-secondary" x-on:click="$refs.confirm.showModal()">{{ $activating ? 'Activate' : 'Deactivate' }}</button>
+                <dialog x-ref="confirm" class="m-auto w-full max-w-md rounded-xl border border-border bg-surface p-6 text-foreground shadow-xl backdrop:bg-slate-950/50"
+                    aria-labelledby="warehouse-status-title" aria-labelledby="warehouse-status-title">
                     <h2 id="warehouse-status-title" class="text-lg font-semibold">{{ $activating ? 'Activate' : 'Deactivate' }} warehouse?</h2>
                     <p class="mt-3 text-muted">{{ $warehouse->name }} will become {{ $activating ? 'active' : 'inactive' }}. Existing records and balances will not be changed.</p>
                     <form method="POST" action="{{ route('warehouses.status', $warehouse) }}" class="mt-6 flex justify-end gap-3">
                         @csrf
                         @method('PATCH')
                         <input type="hidden" name="status" value="{{ $activating ? 'active' : 'inactive' }}">
-                        <button type="button" class="rounded-lg border px-4 py-2" x-on:click="$refs.confirm.close()" autofocus>Cancel</button>
-                        <button type="submit" class="rounded-lg bg-surface-muted px-4 py-2 text-white">Confirm {{ $activating ? 'activation' : 'deactivation' }}</button>
+                        <button type="button" class="btn-secondary" x-on:click="$refs.confirm.close()" autofocus>Cancel</button>
+                        <button type="submit" class="btn-primary">Confirm {{ $activating ? 'activation' : 'deactivation' }}</button>
                     </form>
                 </dialog>
             </div>
