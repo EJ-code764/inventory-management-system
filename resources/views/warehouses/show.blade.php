@@ -7,8 +7,11 @@
                 <a class="btn-primary" href="{{ route('warehouses.edit', $warehouse) }}">Edit warehouse</a>
                 @php($activating = $warehouse->status === 'inactive')
                 <button type="button" class="btn-secondary" x-on:click="$refs.confirm.showModal()">{{ $activating ? 'Activate' : 'Deactivate' }}</button>
-                <dialog x-ref="confirm" class="m-auto w-full max-w-md rounded-xl border border-border bg-surface p-6 text-foreground shadow-xl backdrop:bg-slate-950/50"
-                    aria-labelledby="warehouse-status-title" aria-labelledby="warehouse-status-title">
+                <dialog
+                    x-ref="confirm"
+                    class="m-auto w-full max-w-md rounded-xl border border-border bg-surface p-6 text-foreground shadow-xl backdrop:bg-slate-950/50"
+                    aria-labelledby="warehouse-status-title"
+                >
                     <h2 id="warehouse-status-title" class="text-lg font-semibold">{{ $activating ? 'Activate' : 'Deactivate' }} warehouse?</h2>
                     <p class="mt-3 text-muted">{{ $warehouse->name }} will become {{ $activating ? 'active' : 'inactive' }}. Existing records and balances will not be changed.</p>
                     <form method="POST" action="{{ route('warehouses.status', $warehouse) }}" class="mt-6 flex justify-end gap-3">

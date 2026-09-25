@@ -169,11 +169,13 @@
 
                     <div
                         class="
-                            flex h-9 w-9 shrink-0 items-center justify-center
+                            flex h-9 w-9 items-center justify-center
                             rounded-full
-                            bg-primary-50
-                            text-sm font-semibold text-primary-700
+                            bg-primary-600
+                            text-sm font-semibold text-white
+                            shadow-sm
                         "
+                        aria-hidden="true"
                     >
                         {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                     </div>
@@ -333,11 +335,9 @@
                             <button
                                 type="button"
                                 x-on:click="setTheme('light'); open = false"
-                                @class([
-                                    'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors',
-                                ])
+                                class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors"
                                 :class="theme === 'light'
-                                    ? 'bg-primary-50 text-primary-700'
+                                    ? 'bg-primary-600 text-white'
                                     : 'text-muted hover:bg-surface-muted hover:text-foreground'"
                             >
                                 <svg
@@ -359,7 +359,7 @@
                                 x-on:click="setTheme('dark'); open = false"
                                 class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors"
                                 :class="theme === 'dark'
-                                    ? 'bg-primary-50 text-primary-700'
+                                    ? 'bg-primary-600 text-white'
                                     : 'text-muted hover:bg-surface-muted hover:text-foreground'"
                             >
                                 <svg
@@ -380,7 +380,7 @@
                                 x-on:click="setTheme('system'); open = false"
                                 class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors"
                                 :class="theme === 'system'
-                                    ? 'bg-primary-50 text-primary-700'
+                                    ? 'bg-primary-600 text-white'
                                     : 'text-muted hover:bg-surface-muted hover:text-foreground'"
                             >
                                 <svg
@@ -410,8 +410,9 @@
                         class="
                             flex h-9 w-9 items-center justify-center
                             rounded-full
-                            bg-primary-50
-                            text-sm font-semibold text-primary-700
+                            bg-primary-600
+                            text-sm font-semibold text-white
+                            shadow-sm
                         "
                         aria-hidden="true"
                     >

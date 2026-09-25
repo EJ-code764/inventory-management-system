@@ -60,7 +60,8 @@
             @if ($difference !== null && !\Brick\Math\BigDecimal::of($difference)->isZero())
                 <p class="text-sm" aria-live="polite">Movement:
                     <strong>{{ \Brick\Math\BigDecimal::of($difference)->isNegative() ? 'ADJUSTMENT_OUT' : 'ADJUSTMENT_IN' }}</strong>
-                    · Quantity: {{ \Brick\Math\BigDecimal::of($difference)->abs() }}</p>
+                    · Quantity: {{ \Brick\Math\BigDecimal::of($difference)->abs() }}
+                </p>
             @endif
             <div><label for="adjust-reason" class="mb-1 block text-sm font-medium">Reason</label>
                 <textarea id="adjust-reason" required maxlength="255" rows="3" wire:model="reason"
@@ -74,7 +75,7 @@
         </section>
     @endif
     <div class="flex gap-4"><button type="submit" wire:loading.attr="disabled" @disabled($currentQuantity === null)
-            class="rounded-lg bg-surface-muted px-4 py-2 text-white disabled:opacity-50">Record adjustment</button><a
+            class="btn-primary">Record adjustment</button><a
             href="{{ route('stock-adjustments.index') }}" class="px-4 py-2 underline">Cancel</a></div>
     <p wire:loading role="status" class="text-sm">Working…</p>
 </form>

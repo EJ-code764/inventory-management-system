@@ -24,7 +24,7 @@
             @error('address') <p id="address-error" class="mt-1 text-sm text-red-700">{{ $message }}</p> @enderror
         </div>
         <div class="flex gap-4">
-            <button type="submit" class="rounded-lg bg-surface-muted px-4 py-2 text-white">Save supplier</button>
+            <button type="submit" class="btn-primary">Save supplier</button>
             <a class="px-4 py-2 underline" href="{{ $supplier->exists ? route('suppliers.show', $supplier) : route('suppliers.index') }}">Cancel</a>
         </div>
     </form>

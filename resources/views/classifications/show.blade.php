@@ -12,7 +12,7 @@
             <div><dt class="text-sm text-muted">Created</dt><dd>{{ $record->created_at->format('Y-m-d H:i') }}</dd></div>
         </dl>
         @can('update', $record)
-            <a href="{{ route($resource.'.edit', ['record' => $record->id]) }}" class="mt-6 inline-block rounded-lg bg-surface-muted px-4 py-2 text-white">Edit</a>
+            <a href="{{ route($resource.'.edit', ['record' => $record->id]) }}" class="btn-primary mt-6">Edit</a>
         @endcan
     </section>
 </x-layouts.app>

@@ -48,8 +48,8 @@
         @if(request()->routeIs('dashboard')) aria-current="page" @endif
         @class([
             'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-            'bg-primary-50 text-primary-700' => request()->routeIs('dashboard'),
-            'text-muted hover:bg-slate-100 hover:text-foreground' => ! request()->routeIs('dashboard'),
+            'bg-primary-50 text-primary-700 dark:bg-primary-950/50 dark:text-primary-300' => request()->routeIs('dashboard'),
+            'text-muted hover:bg-surface-muted hover:text-foreground' => ! request()->routeIs('dashboard'),
         ])
     >
         Dashboard
@@ -73,7 +73,7 @@
             @class([
                 'flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors',
                 'text-primary-700' => $productManagementActive,
-                'text-muted hover:bg-slate-100 hover:text-foreground' => ! $productManagementActive,
+                'text-muted hover:bg-surface-muted hover:text-foreground' => ! $productManagementActive,
             ])
         >
             <span>Product Management</span>
@@ -112,7 +112,7 @@
                     @endif
                      @class([
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
-                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
                             => request()->routeIs('products.*'),
                         'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('products.*'),
@@ -181,7 +181,7 @@
                                 @endif
                                 @class([
                                     'ml-4 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
-                                    'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                                    'border-primary-500 bg-primary-50 font-medium text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
                                         => request()->routeIs($resource.'.*'),
                                     'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                                         => ! request()->routeIs($resource.'.*'),
@@ -217,7 +217,7 @@
             @class([
                 'flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors',
                 'text-primary-700' => $inventoryActive,
-                'text-muted hover:bg-slate-100 hover:text-foreground' => ! $inventoryActive,
+                'text-muted hover:bg-surface-muted hover:text-foreground' => ! $inventoryActive,
             ])
         >
             <span>Inventory</span>
@@ -255,7 +255,7 @@
 
                     @class([
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
-                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
                             => request()->routeIs('inventory.dashboard'),
                         'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('inventory.dashboard'),
@@ -271,7 +271,7 @@
 
                      @class([
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
-                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
                             => request()->routeIs('inventory.index', 'inventory.show'),
                         'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('inventory.index', 'inventory.show'),
@@ -290,7 +290,7 @@
 
                      @class([
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
-                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
                             => request()->routeIs('inventory.movements'),
                         'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('inventory.movements'),
@@ -308,7 +308,7 @@
 
                         @class([
                             'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
-                            'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                            'border-primary-500 bg-primary-50 font-medium text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
                                 => request()->routeIs('stock-adjustments.*'),
                             'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                                 => ! request()->routeIs('stock-adjustments.*'),
@@ -326,7 +326,7 @@
 
                         @class([
                             'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
-                            'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                            'border-primary-500 bg-primary-50 font-medium text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
                                 => request()->routeIs('stock-transfers.*'),
                             'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                                 => ! request()->routeIs('stock-transfers.*'),
@@ -344,7 +344,7 @@
 
                         @class([
                             'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
-                            'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                            'border-primary-500 bg-primary-50 font-medium text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
                                 => request()->routeIs('product-batches.*'),
                             'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                                 => ! request()->routeIs('product-batches.*'),
@@ -375,7 +375,7 @@
             @class([
                 'flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors',
                 'text-primary-700' => $purchasingActive,
-                'text-muted hover:bg-slate-100 hover:text-foreground' => ! $purchasingActive,
+                'text-muted hover:bg-surface-muted hover:text-foreground' => ! $purchasingActive,
             ])
         >
             <span>Purchasing</span>
@@ -412,7 +412,7 @@
 
                     @class([
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
-                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
                             => request()->routeIs('purchase-orders.*'),
                         'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('purchase-orders.*'),
@@ -430,7 +430,7 @@
 
                     @class([
                         'ml-3 block rounded-r-lg border-l-2 px-4 py-2 text-sm transition-colors',
-                        'border-primary-500 bg-primary-50 font-medium text-primary-700'
+                        'border-primary-500 bg-primary-50 font-medium text-primary-700 dark:bg-primary-950/50 dark:text-primary-300'
                             => request()->routeIs('suppliers.*'),
                         'border-border text-muted hover:border-border hover:bg-surface-muted hover:text-foreground'
                             => ! request()->routeIs('suppliers.*'),
@@ -457,8 +457,8 @@
             @endif
             @class([
                 'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                'bg-primary-50 text-primary-700' => request()->routeIs('warehouses.*'),
-                'text-muted hover:bg-slate-100 hover:text-foreground' => ! request()->routeIs('warehouses.*'),
+                'bg-primary-50 text-primary-700 dark:bg-primary-950/50 dark:text-primary-300' => request()->routeIs('warehouses.*'),
+                'text-muted hover:bg-surface-muted hover:text-foreground' => ! request()->routeIs('warehouses.*'),
             ])
         >
             Warehouses
@@ -482,8 +482,8 @@
             @endif
             @class([
                 'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                'bg-primary-50 text-primary-700' => request()->routeIs('reports.*'),
-                'text-muted hover:bg-slate-100 hover:text-foreground' => ! request()->routeIs('reports.*'),
+                'bg-primary-50 text-primary-700 dark:bg-primary-950/50 dark:text-primary-300' => request()->routeIs('reports.*'),
+                'text-muted hover:bg-surface-muted hover:text-foreground' => ! request()->routeIs('reports.*'),
             ])
         >
             Reports
@@ -503,8 +503,8 @@
             @endif
             @class([
                 'flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                'bg-primary-50 text-primary-700' => request()->routeIs('activity-logs.*'),
-                'text-muted hover:bg-slate-100 hover:text-foreground' => ! request()->routeIs('activity-logs.*'),
+                'bg-primary-50 text-primary-700 dark:bg-primary-950/50 dark:text-primary-300' => request()->routeIs('activity-logs.*'),
+                'text-muted hover:bg-surface-muted hover:text-foreground' => ! request()->routeIs('activity-logs.*'),
             ])
         >
             Activity Logs

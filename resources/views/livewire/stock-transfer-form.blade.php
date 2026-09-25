@@ -77,7 +77,7 @@
             class="w-full rounded-lg border border-border px-3 py-2"></textarea>
     </div>
     <div class="flex gap-4"><button type="submit" wire:loading.attr="disabled"
-            class="rounded-lg bg-surface-muted px-4 py-2 text-white disabled:opacity-50">Save draft</button><a
+            class="btn-primary">Save draft</button><a
             href="{{ route('stock-transfers.index') }}" class="px-4 py-2 underline">Cancel</a></div>
     <p class="text-sm text-muted">Drafts do not move or reserve inventory. Completion moves all items atomically.
     </p>

@@ -83,11 +83,6 @@
                 <tbody>
                     @forelse($rows as $row)
                         <tr wire:key="report-row-{{ $rows->currentPage() }}-{{ $loop->index }}" class="border-b">
-                            {{-- @foreach ($columns as $field => $label)
-                                <td class="p-3">
-                                    {{ in_array($field, \App\Services\ReportQuery::DECIMALS, true) ? \App\Services\ReportQuery::decimal($row->{$field}) : $row->{$field} ?? '—' }}
-                                </td>
-                            @endforeach --}}
                             @foreach ($columns as $field => $label)
                                 <td class="p-3">
                                     @if (in_array($field, \App\Services\ReportQuery::MONEY, true))

@@ -42,7 +42,7 @@
         </div>
         <p class="text-sm text-muted">Reorder level is a threshold, not stock quantity. Inventory is managed separately.</p>
         <div class="flex gap-4">
-            <button type="submit" @disabled($categories->isEmpty() || $units->isEmpty()) class="rounded-lg bg-surface-muted px-4 py-2 text-white disabled:opacity-50">Save product</button>
+            <button type="submit" @disabled($categories->isEmpty() || $units->isEmpty()) class="btn-primary">Save product</button>
             <a class="px-4 py-2" href="{{ $product->exists ? route('products.show', $product) : route('products.index') }}">Cancel</a>
         </div>
     </form>

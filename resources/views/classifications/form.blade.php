@@ -12,20 +12,20 @@
         @else
             <div>
                 <label for="description" class="mb-1 block text-sm font-medium">Description</label>
-                <textarea id="description" name="description" rows="4" maxlength="5000" class="w-full rounded-lg border border-border px-3 py-2" aria-describedby="description-error">{{ old('description', $record->description) }}</textarea>
+                <textarea id="description" name="description" rows="4" maxlength="5000" class="form-input" aria-describedby="description-error">{{ old('description', $record->description) }}</textarea>
                 @error('description') <p id="description-error" class="mt-1 text-sm text-red-700">{{ $message }}</p> @enderror
             </div>
         @endif
         <div>
-            <label for="status" class="mb-1 block text-sm font-medium">Status</label>
-            <select id="status" name="status" class="w-full rounded-lg border border-border px-3 py-2" aria-describedby="status-error">
+            <label for="status" class="form-label">Status</label>
+            <select id="status" name="status" class="form-input" aria-describedby="status-error">
                 <option value="active" @selected(old('status', $record->status) === 'active')>Active</option>
                 <option value="inactive" @selected(old('status', $record->status) === 'inactive')>Inactive</option>
             </select>
             @error('status') <p id="status-error" class="mt-1 text-sm text-red-700">{{ $message }}</p> @enderror
         </div>
         <div class="flex items-center gap-4">
-            <button class="rounded-lg bg-surface-muted px-4 py-2 font-medium text-white">Save {{ str($resource)->singular() }}</button>
+            <button class="btn-primary">Save {{ str($resource)->singular() }}</button>
             <a href="{{ route($resource.'.index') }}" class="text-sm underline">Cancel</a>
         </div>
     </form>
