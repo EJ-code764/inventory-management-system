@@ -47,7 +47,12 @@
     </x-ui.card>
 
     {{-- Dashboard description --}}
-    <div class="mb-6 rounded-xl border border-primary-100 bg-primary-50/50 px-4 py-3">
+    <div class="
+    mb-6 rounded-xl
+    border border-primary-100 bg-primary-50/50
+    px-4 py-3
+    dark:border-primary-900/60 dark:bg-primary-950/30
+">
         <p class="text-sm leading-6 text-muted">
             Current balances include reserved, expired and inactive stock.
             Total quantity adds different units and is an operational count,
@@ -184,7 +189,7 @@
                                     colspan="5"
                                     class="px-4 py-12 text-center"
                                 >
-                                    <p class="font-medium text-slate-700">
+                                    <p class="font-medium text-foreground">
                                         No recent stock movements
                                     </p>
 
@@ -300,7 +305,7 @@
                                     colspan="6"
                                     class="px-4 py-12 text-center"
                                 >
-                                    <p class="font-medium text-slate-700">
+                                    <p class="font-medium text-foreground">
                                         No recent purchases
                                     </p>
 
